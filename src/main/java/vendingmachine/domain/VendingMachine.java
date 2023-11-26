@@ -1,13 +1,16 @@
 package vendingmachine.domain;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import vendingmachine.util.CoinPicker;
 
 public class VendingMachine {
-    private Map<Coin, Integer> coins;
-    private Map<Item, Integer> items;
+    private final Map<Coin, Integer> coins = new HashMap<>();
+    private Map<Item, Integer> items = new HashMap<>();
     private final CoinPicker coinPicker = new CoinPicker();
 
     public VendingMachine(int availableAmount) {
@@ -29,6 +32,13 @@ public class VendingMachine {
                 .filter(coin -> coin.getAmount() == pickedAmount)
                 .findFirst()
                 .ifPresent(coin -> coins.replace(coin, coins.get(coin)+1));
+    }
+
+    public List<String> getCoinHoldings(){
+        return coins.keySet().stream()
+                .sorted((coin1, coin2) -> Integer.compare(coin2.getAmount(), coin1.getAmount()))
+                .map(coin -> coin.getAmount() + "원: " + coins.get(coin) + "개")
+                .collect(Collectors.toList());
     }
 
     public void restockItem(Item item, int quantity) {
