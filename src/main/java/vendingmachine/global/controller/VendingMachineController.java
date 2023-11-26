@@ -12,6 +12,7 @@ public class VendingMachineController {
     public void run() {
         VendingMachine vendingMachine = initialize();
         CoinsResponseView.print(vendingMachine.toCoinsResponse());
+
     }
 
     private VendingMachine initialize() {
