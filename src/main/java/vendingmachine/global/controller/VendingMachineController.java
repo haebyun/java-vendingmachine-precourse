@@ -11,6 +11,7 @@ import vendingmachine.global.domain.Items;
 import vendingmachine.global.domain.Payment;
 import vendingmachine.global.domain.VendingMachine;
 import vendingmachine.view.AmountRequestView;
+import vendingmachine.view.BuyingRequestView;
 import vendingmachine.view.CoinsResponseView;
 import vendingmachine.view.ItemsRequestView;
 import vendingmachine.view.PaymentRequestView;
@@ -25,7 +26,24 @@ public class VendingMachineController {
         Items items = generateItems(ItemsRequestView.requestItems());
 
         Payment payment = Payment.valueOf(PaymentRequestView.requestPayment());
+        buy(items, payment);
 
+    }
+
+    private void buy(Items items, Payment payment) {
+        int remain = payment.getValue();
+        while (true) {
+            if (remain < items.getLeastPrice() || items.isSoldOut()) {
+                break;
+            }
+            final int temp = remain;
+            Item item = retry(() -> {
+                return items.sell(
+                        BuyingRequestView.requestBuyingItem(temp)
+                );
+            });
+            remain -= item.getPrice();
+        }
     }
 
     private Items generateItems(ItemsRequest itemsRequest) {

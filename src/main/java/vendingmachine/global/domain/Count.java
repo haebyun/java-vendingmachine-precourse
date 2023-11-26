@@ -10,4 +10,12 @@ public class Count {
     public static Count valueOf(int count) {
         return new Count(count);
     }
+
+    public boolean isEqualTo(int value) {
+        return count == value;
+    }
+
+    public void subtract(int i) {
+        count -= i;
+    }
 }

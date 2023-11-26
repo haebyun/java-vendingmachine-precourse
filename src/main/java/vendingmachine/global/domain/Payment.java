@@ -10,4 +10,8 @@ public class Payment {
     public static Payment valueOf(int payment) {
         return new Payment(payment);
     }
+
+    public int getValue() {
+        return payment;
+    }
 }

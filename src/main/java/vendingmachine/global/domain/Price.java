@@ -28,4 +28,8 @@ public class Price {
             throw CustomException.from(ErrorMessage.MIN_PRICE_ERROR);
         }
     }
+
+    public int getValue() {
+        return price;
+    }
 }

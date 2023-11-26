@@ -14,4 +14,20 @@ public class Item {
     public static Item of(String name, int price, int count) {
         return new Item(name, Price.valueOf(price), Count.valueOf(count));
     }
+
+    public int getPrice() {
+        return price.getValue();
+    }
+
+    public boolean isEmpty() {
+        return count.isEqualTo(0);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void sell() {
+        count.subtract(1);
+    }
 }
