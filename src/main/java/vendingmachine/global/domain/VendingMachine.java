@@ -3,6 +3,7 @@ package vendingmachine.global.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import vendingmachine.Coin;
+import vendingmachine.global.controller.dto.response.CoinsResponse;
 import vendingmachine.global.exception.CustomException;
 import vendingmachine.global.exception.ErrorMessage;
 
@@ -44,5 +45,9 @@ public class VendingMachine {
         List<Integer> coinAmounts = Coin.toAmounts();
         int coinAmount = Randoms.pickNumberInList(coinAmounts);
         return Coin.valueOf(coinAmount);
+    }
+
+    public CoinsResponse toCoinsResponse() {
+        return coins.toCoinsResponse();
     }
 }
