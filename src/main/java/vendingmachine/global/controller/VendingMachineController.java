@@ -19,8 +19,10 @@ public class VendingMachineController {
     public void run() {
         VendingMachine vendingMachine = initialize();
         CoinsResponseView.print(vendingMachine.toCoinsResponse());
+
         Items items = generateItems(ItemsRequestView.requestItems());
 
+        
     }
 
     private Items generateItems(ItemsRequest itemsRequest) {
