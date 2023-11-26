@@ -7,7 +7,7 @@ import vendingmachine.Coin;
 public class Coins {
     private Map<Coin, Integer> coins;
 
-    private Coins() {
+    public Coins() {
         coins = new EnumMap<>(Coin.class);
     }
 
