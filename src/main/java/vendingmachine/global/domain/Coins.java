@@ -30,6 +30,8 @@ public class Coins {
     }
 
     public ChangeResponse toChangeResponse() {
-        return new ChangeResponse(coins);
+        ChangeResponse changeResponse = new ChangeResponse(coins);
+        coins.clear();
+        return changeResponse;
     }
 }

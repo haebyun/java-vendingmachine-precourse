@@ -48,6 +48,7 @@ public class VendingMachine {
 
     public ChangeResponse changeCoins(int remain) {
         if (amount.getValue() < remain) {
+            amount = Amount.from(remain - amount.getValue());
             return coins.toChangeResponse();
         }
 
