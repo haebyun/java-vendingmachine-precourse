@@ -68,4 +68,20 @@ public class Converter {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
+
+    public int convertInsertAmount(String input) {
+        try {
+            int amount = Integer.parseInt(input);
+            validateInsertAmount(amount);
+            return amount;
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+    }
+
+    private void validateInsertAmount(int amount) {
+        if(amount<0){
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+    }
 }
