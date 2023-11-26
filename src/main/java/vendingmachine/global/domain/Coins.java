@@ -10,4 +10,8 @@ public class Coins {
     private Coins() {
         coins = new EnumMap<>(Coin.class);
     }
+
+    public void add(Coin coin) {
+        coins.put(coin, coins.getOrDefault(coin, 0) + 1);
+    }
 }
