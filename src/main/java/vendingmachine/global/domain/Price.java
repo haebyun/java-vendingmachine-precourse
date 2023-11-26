@@ -7,7 +7,7 @@ public class Price {
         this.price = price;
     }
 
-    public Price valueOf(int price) {
+    public static Price valueOf(int price) {
         return new Price(price);
     }
 }
