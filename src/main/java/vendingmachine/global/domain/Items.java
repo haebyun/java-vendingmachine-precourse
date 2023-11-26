@@ -23,14 +23,19 @@ public class Items {
                 .orElseThrow(() -> new IllegalStateException());
     }
 
-    public Item sell(String name) {
-        for (Item item : items) {
-            if (item.getName().equals(name)) {
-                item.sell();
-                return item;
-            }
+    public Item sell(int payment, String name) {
+        Item item = findByName(name);
+        if (item.getPrice() > payment) {
+            throw CustomException.from(ErrorMessage.CANNOT_BUY_ERROR);
         }
-        throw CustomException.from(ErrorMessage.UNKNOWN_ITEM_ERROR);
+        return item;
+    }
+
+    private Item findByName(String name) {
+        return items.stream()
+                .filter(item -> item.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> CustomException.from(ErrorMessage.UNKNOWN_ITEM_ERROR));
     }
 
     public boolean isSoldOut() {

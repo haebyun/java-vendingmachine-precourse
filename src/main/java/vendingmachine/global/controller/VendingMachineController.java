@@ -30,7 +30,7 @@ public class VendingMachineController {
 
     }
 
-    private void buy(Items items, Payment payment) {
+    private int buy(Items items, Payment payment) {
         int remain = payment.getValue();
         while (true) {
             if (remain < items.getLeastPrice() || items.isSoldOut()) {
@@ -39,11 +39,13 @@ public class VendingMachineController {
             final int temp = remain;
             Item item = retry(() -> {
                 return items.sell(
+                        temp,
                         BuyingRequestView.requestBuyingItem(temp)
                 );
             });
             remain -= item.getPrice();
         }
+        return remain;
     }
 
     private Items generateItems(ItemsRequest itemsRequest) {
