@@ -3,6 +3,7 @@ package vendingmachine.global.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import vendingmachine.Coin;
+import vendingmachine.global.controller.dto.response.ChangeResponse;
 import vendingmachine.global.controller.dto.response.CoinsResponse;
 
 public class VendingMachine {
@@ -43,5 +44,12 @@ public class VendingMachine {
 
     public CoinsResponse toCoinsResponse() {
         return coins.toCoinsResponse();
+    }
+
+    public ChangeResponse changeCoins(int remain) {
+        if (amount.getValue() < remain) {
+            return coins.toChangeResponse();
+        }
+
     }
 }

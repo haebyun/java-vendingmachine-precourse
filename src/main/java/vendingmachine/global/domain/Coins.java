@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import vendingmachine.Coin;
+import vendingmachine.global.controller.dto.response.ChangeResponse;
 import vendingmachine.global.controller.dto.response.CoinResponse;
 import vendingmachine.global.controller.dto.response.CoinsResponse;
 
@@ -26,5 +27,9 @@ public class Coins {
                 )
                 .toList();
         return new CoinsResponse(coinResponses);
+    }
+
+    public ChangeResponse toChangeResponse() {
+        return new ChangeResponse(coins);
     }
 }
