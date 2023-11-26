@@ -8,10 +8,12 @@ import vendingmachine.controller.request.ItemsRequest;
 import vendingmachine.global.domain.Amount;
 import vendingmachine.global.domain.Item;
 import vendingmachine.global.domain.Items;
+import vendingmachine.global.domain.Payment;
 import vendingmachine.global.domain.VendingMachine;
 import vendingmachine.view.AmountRequestView;
 import vendingmachine.view.CoinsResponseView;
 import vendingmachine.view.ItemsRequestView;
+import vendingmachine.view.PaymentRequestView;
 import vendingmachine.view.console.ConsoleWriter;
 
 public class VendingMachineController {
@@ -22,7 +24,8 @@ public class VendingMachineController {
 
         Items items = generateItems(ItemsRequestView.requestItems());
 
-        
+        Payment payment = Payment.valueOf(PaymentRequestView.requestPayment());
+
     }
 
     private Items generateItems(ItemsRequest itemsRequest) {
