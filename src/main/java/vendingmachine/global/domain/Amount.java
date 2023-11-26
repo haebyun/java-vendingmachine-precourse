@@ -10,4 +10,8 @@ public class Amount {
     public static Amount from(int amount) {
         return new Amount(amount);
     }
+
+    public int getValue() {
+        return amount;
+    }
 }
