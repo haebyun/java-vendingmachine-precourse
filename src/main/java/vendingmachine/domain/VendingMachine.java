@@ -34,7 +34,7 @@ public class VendingMachine {
                 .ifPresent(coin -> coins.replace(coin, coins.get(coin)+1));
     }
 
-    public List<String> getCoinHoldings(){
+    public List<String> getCoinHoldingsInformation(){
         return coins.keySet().stream()
                 .sorted((coin1, coin2) -> Integer.compare(coin2.getAmount(), coin1.getAmount()))
                 .map(coin -> coin.getAmount() + "원: " + coins.get(coin) + "개")
