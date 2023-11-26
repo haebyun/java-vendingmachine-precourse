@@ -5,7 +5,8 @@ public enum ErrorMessage {
     NOT_NUMBER_ERROR("올바른 숫자를 입력해주세요."),
     SEPARATOR_ERROR("올바른 구분자를 사용해 입력해주세요."),
     UNKNOWN_ITEM_ERROR("존재하지 않는 상품입니다."),
-    CANNOT_BUY_ERROR("금액이 부족하여 상품을 구매할 수 없습니다.");
+    CANNOT_BUY_ERROR("금액이 부족하여 상품을 구매할 수 없습니다."),
+    NOT_DIVISIBLE_ERROR("나누어 떨어지지 않는 금액 입력입니다.");
 
     private final String message;
 
