@@ -1,6 +1,7 @@
 package vendingmachine;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public enum Coin {
@@ -26,6 +27,12 @@ public enum Coin {
         return Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
                 .toList();
+    }
+
+    public static int getLeastAmount() {
+        return Arrays.stream(Coin.values())
+                .min(Comparator.comparingInt(Coin::getAmount))
+                .orElseThrow(() -> new IllegalStateException()).amount;
     }
 
     public int getAmount() {
