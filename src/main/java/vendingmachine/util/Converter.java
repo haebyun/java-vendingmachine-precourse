@@ -1,5 +1,8 @@
 package vendingmachine.util;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 public class Converter {
 
     public int convertAvailableBalance(String input) {
@@ -17,6 +20,51 @@ public class Converter {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
         if(balance<0){
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+    }
+
+    public List<String> convertRestocks(String input) {
+        try {
+            List<String> restocks = Stream.of(input.split(";"))
+                    .map(String::trim)
+                    .toList();
+            restocks.forEach(this::validateRestocks);
+            return restocks;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+    }
+
+    private void validateRestocks(String restock){
+        List<String> information = Stream.of(restock.split("[,\\[\\]]"))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toList();
+        validateSize(information.size());
+        int price = Integer.parseInt(information.get(1));
+        validatePrice(price);
+        int quantity = Integer.parseInt(information.get(2));
+        validateQuantity(quantity);
+    }
+
+    private void validateSize(int size){
+        if(size!=3){
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+    }
+
+    private void validatePrice(int price){
+        if(price<100){
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+        if(price%10>0){
+            throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
+        }
+    }
+
+    private void validateQuantity(int quantity){
+        if(quantity<1){
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
