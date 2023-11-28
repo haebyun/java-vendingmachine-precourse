@@ -12,6 +12,7 @@ public class InputView {
     public String readAvailableBalance() {
         System.out.println(AVAILABLE_BALANCE_MESSAGE);
         String input = Console.readLine();
+        System.out.println();
         validateEmptyInput(input);
         return input;
     }
@@ -19,6 +20,7 @@ public class InputView {
     public String readRestock() {
         System.out.println(RESTOCK_MESSAGE);
         String input = Console.readLine();
+        System.out.println();
         validateEmptyInput(input);
         return input;
     }
@@ -26,6 +28,7 @@ public class InputView {
     public String readInsertAmount() {
         System.out.println(INSERT_AMOUNT_MESSAGE);
         String input = Console.readLine();
+        System.out.println();
         validateEmptyInput(input);
         return input;
     }
@@ -33,6 +36,7 @@ public class InputView {
     public String readProductPurchase() {
         System.out.println(PRODUCT_PURCHASE_MESSAGE);
         String input = Console.readLine();
+        System.out.println();
         validateEmptyInput(input);
         return input;
     }
