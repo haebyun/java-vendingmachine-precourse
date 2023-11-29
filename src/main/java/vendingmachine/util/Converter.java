@@ -16,18 +16,17 @@ public class Converter {
     }
 
     private void validateInvalidBalance(int balance) {
-        if(balance%10>0){
+        if (balance % 10 > 0) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
-        if(balance<0){
+        if (balance < 0) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
 
     public List<String> convertRestocks(String input) {
         try {
-            List<String> restocks = Stream.of(input.split(";"))
-                    .map(String::trim)
+            List<String> restocks = Stream.of(input.split(";", -1))
                     .toList();
             restocks.forEach(this::validateRestocks);
             return restocks;
@@ -36,10 +35,10 @@ public class Converter {
         }
     }
 
-    private void validateRestocks(String restock){
+    private void validateRestocks(String restock) {
         List<String> information = Stream.of(restock.split("[,\\[\\]]"))
                 .map(String::trim)
-                .filter(s -> !s.isEmpty())
+                .filter(s->!s.isEmpty())
                 .toList();
         validateSize(information.size());
         int price = Integer.parseInt(information.get(1));
@@ -48,23 +47,23 @@ public class Converter {
         validateQuantity(quantity);
     }
 
-    private void validateSize(int size){
-        if(size!=3){
+    private void validateSize(int size) {
+        if (size != 3) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
 
-    private void validatePrice(int price){
-        if(price<100){
+    private void validatePrice(int price) {
+        if (price < 100) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
-        if(price%10>0){
+        if (price % 10 > 0) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
 
-    private void validateQuantity(int quantity){
-        if(quantity<1){
+    private void validateQuantity(int quantity) {
+        if (quantity < 1) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
@@ -74,13 +73,13 @@ public class Converter {
             int amount = Integer.parseInt(input);
             validateInsertAmount(amount);
             return amount;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
 
     private void validateInsertAmount(int amount) {
-        if(amount<0){
+        if (amount < 0) {
             throw new IllegalArgumentException(VendingMachineException.INVALID_INPUT.getMessage());
         }
     }
